@@ -1,0 +1,58 @@
+<apex:page controller="CustomController">
+
+    <apex:stylesheet value="{!$Resource.Application_CSS}"/>
+    <apex:includeScript value="{!$Resource.Application_JS}"/>
+    
+    <head>
+         <title> Using Static Resources </title>
+    </head> 
+    
+    <body>
+        <div class="container">
+          <div class="form-area">
+            <apex:form id="createform">
+                <apex:outputPanel styleClass="red" layout="block">
+                  <apex:pageBlock title="Job Wizard" id="pblock" mode="edit"><br/>
+                    <div class="header">
+                           <center><img src="{!$Resource.Application_Image}" width="35%"/></center>
+                    </div>
+                  
+                    <div class="job">
+                      <h1>Job Registration </h1><br/>
+                    </div><br/>
+
+                    <div class="step">
+                      <h4> Step-1 </h4>    <br/>
+                    </div>
+      
+                    <apex:pageBlockSection columns="2" id="pbsection1">     
+                        <apex:inputField id="mang" value="{!jobVariable.Manager__c}"/>
+                        <apex:inputField id="jobt" value="{!jobVariable.Job_Types__c}"/>
+                    </apex:pageBlockSection>
+                    
+                    <apex:pageBlockSection columns="1" id="pbsection">
+                           <apex:inputTextarea id="des" value="{!jobVariable.Description__c}" styleClass="sample"/>
+                          <apex:inputField id="pos" value="{!jobVariable.Number_of_Positions__c}"/>
+                          <apex:inputField id="sal" value="{!jobVariable.Salary_Offered__c}"/>
+                          <apex:inputField id="act" value="{!jobVariable.Active__c}" /> 
+                          <apex:inputField id="req" value="{!jobVariable.Required_Skills__c}" />
+                          <apex:inputField id="qual" value="{!jobVariable.Qualification_Required__c}" />    
+                          <apex:inputField id="certificate" value="{!jobVariable.Certification_Required__c}" /> 
+                         
+                    </apex:pageBlockSection>
+                    <apex:pageBlockButtons id="button" location="bottom" >  
+                            <apex:commandButton onclick="myfunction('{!$Component.createform.pblock.pbsection.des}','{!$Component.createform.pblock.pbsection.sal}')" styleClass="buttonStyle"  value="Save & next"/>
+                        <apex:actionFunction action="{!insertMe}" name="insertMe" reRender="none"/>
+                    </apex:pageBlockButtons>
+                                                              
+                    <apex:pageBlockSection >
+                        <apex:detail />
+                    </apex:pageBlockSection>
+                    <apex:pageMessages /> 
+                  </apex:pageBlock>
+                </apex:outputPanel>
+             </apex:form>
+           </div>
+        </div>
+    </body>
+</apex:page>
